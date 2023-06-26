@@ -29,11 +29,11 @@ On a high level, this project catalogs a user's hobby items based off of eBay co
 
 * [ ] Write the logic to fetch data from API (3 Hours)
 
-### Part 4: Implement CRUD (Est 20 Hours)
+### Part 4: Implement CRUD (Est 25 Hours Total)
 
 * [ ] Implement CRUD operations (Users, Collections, Items)
-  * [ ] Models
-     * [ ] User
+  * [ ] Models (3 Hours)
+     * [ ] User 
         * [ ] Long id
         * [ ] String name
         * [ ] String email
@@ -56,12 +56,12 @@ On a high level, this project catalogs a user's hobby items based off of eBay co
         * [ ] private List<Collection> collections 
         * [ ] getters & setters 
      * [ ] PriceData (to hold data of sold prices)
-  * [ ] Repositories
+  * [ ] Repositories (1 Hour)
      * [ ] UserRepository
      * [ ] CollectionRepository
      * [ ] ItemRepository
      * [ ] PortfolioRepository
-       * [ ] Service Classes
+   * [ ] Service Classes (8 Hours - 2 Hours per Service Class)
      * [ ] UserService
         * [ ] getUsers
         * [ ] addUser
@@ -83,7 +83,7 @@ On a high level, this project catalogs a user's hobby items based off of eBay co
         * [ ] Portfolio updatePortfolio(Portfolio portfolio)
         * [ ] deletePortfolio(Long id)
      * [ ] FetchService     
-     * [ ] Result<T>
+     * [ ] Result<T> (0.5 Hours)
         * [ ] private ResultType resultType;
         * [ ] private String message;
         * [ ] private T data;
@@ -91,7 +91,7 @@ On a high level, this project catalogs a user's hobby items based off of eBay co
         * [ ] public Result(ResultType resultType, String message, T data)
         * [ ] getters and setters
      * [ ] ResultType
-  * [ ] Controllers
+  * [ ] Controllers (10 Hours - 2 Hours per Controller Class)
      * [ ] UserController
         * [ ] private UserService userService
         * [ ] public List<User> getUsers()
@@ -122,7 +122,7 @@ On a high level, this project catalogs a user's hobby items based off of eBay co
         * [ ] public User login()
      * [ ] GlobalExceptionHandler
 
-### Part 5: Frontend (React) - React App Setup and Component Design (Est 20 Hours)
+### Part 5: Frontend (React) - React App Setup and Component Design (Est 20 Hours Total)
 
 * [ ] Setup REACT (1 Hour)
 * [ ] Organize and identify the necessary components (1 Hour)
@@ -147,16 +147,17 @@ On a high level, this project catalogs a user's hobby items based off of eBay co
 * [ ] Implement CRUD for the frontend (3 Hours)
 * [ ] Styling with Tailwind CSS
 
-### Part 6: Implement Component Logic (Est 5 Hours)
+### Part 6: Implement Component Logic (Est 5 Hours Total)
 
 * [ ] Implement logic in components
   * [ ] Fetch data from backend (2 Hours)
   * [ ] Handle user inputs (2 Hours)
   * [ ] Ensure components can correctly fetch and display backend data (1 Hour)
 
-### Part 7: Routing and Navigation (Est 5 Hours)
+### Part 7: Routing and Navigation (Est 5 Hours Total)
 
-* [ ] Implement routing and navigation & test navigation
+* [ ] Implement routing and navigation (4 Hours)
+* [ ] Test navigation (1 Hour)
 
 ## High-Level Requirements
 
