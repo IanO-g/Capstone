@@ -7,6 +7,8 @@
 ## Overiview:
 ### 1. Store Collectible Items(Ex. Baseball Cards) from Users and log their values akin to a stock ticker
 > Utilize an Ebay api to collect real time data to accurately reflect the value of the user's collectible
+    > Use eBay's "findCompletedItems" operation in "Finding API"
+    > Retrieve listings for completed auction/buy it now items  
 > Implement a UI element to dynamically show the changing value of their collection
     > Highest Sold Price
     > Lowest Sold Price
