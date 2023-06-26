@@ -1,4 +1,4 @@
-# Capstone Proposa/Checklist
+# Capstone Proposal/Checklist
 
 ## Tasks
 
