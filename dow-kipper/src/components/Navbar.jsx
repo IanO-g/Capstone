@@ -30,6 +30,8 @@ const Navbar = () => {
           <li className="mr-6">About</li>
           <li className="mr-6">Services</li>
           <li className="mr-6">Contact</li>
+          <li className="mr-6">Sign-Up</li>
+          <li className="mr-6">Login</li>
         </ul>
         <div className="flex space-x-4">
           <a href="/shopping" className="text-black">
