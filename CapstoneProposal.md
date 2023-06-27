@@ -37,7 +37,28 @@ On a high level, this project catalogs a user's hobby items based off of eBay co
 ### Part 5: Frontend (React) - React App Setup and Component Design
 
 * [ ] Setup REACT
+* [ ] Organize and identify the necessary components
 * [ ] Design our components
+  * [ ] Home
+  * [ ] Category
+  * [ ] Collections
+  * [ ] Inventory
+  * [ ] User
+  * [ ] Footer
+* [ ] Enable routing with React-Router-DOM
+  * [ ] Home
+  * [ ] Login
+  * [ ] Register
+  * [ ] Settings
+  * [ ] Category
+  * [ ] Collections
+  * [ ] Inventory
+  * [ ] User
+* [ ] Hero Component will have a carousel view of categories and items in cards
+* [ ] Footer component will either have individual card information or just a banner with p tag text
+* [ ] Implement CRUD for the frontend
+* [ ] Styling with Tailwind CSS
+
 
 ### Part 6: Implement Component Logic
 
