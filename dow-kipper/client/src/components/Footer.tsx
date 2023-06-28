@@ -3,10 +3,10 @@ import React from 'react'
 const Footer = () => {
   return (
     <div>
-      <footer className='my-8'>
+      <footer className="my-8">
         <div className="cards grid grid-cols-3 gap-4">
           <div className="card p-4">
-            <h3>About:</h3>
+            <h3 className="font-semibold">About:</h3>
             <p className="">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Cupiditate id voluptas ab perferendis laborum. Alias ut nulla
@@ -15,7 +15,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="card p-4">
-            <h3>Join Our Community:</h3>
+            <h3 className="font-semibold">Join Our Community:</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
               velit dolorum voluptate aut alias sunt fuga, odit reiciendis odio
@@ -24,7 +24,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="card p-4">
-            <h3>Partner with Us:</h3>
+            <h3 className="font-semibold">Partner with Us:</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Et esse
               illo similique, odit placeat dignissimos atque accusantium
