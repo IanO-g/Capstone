@@ -1,5 +1,6 @@
 import Collections from "./components/Collections";
 import Home from "./components/Home";
+import Inventory from "./components/Inventory";
 import Login from "./components/Login";
 import Settings from "./components/Settings";
 import Signup from "./components/Signup";
@@ -12,7 +13,8 @@ function App() {
         {/* <Collections /> */}
         {/* <Signup /> */}
         {/* <Login /> */}
-        <Settings />
+        {/* <Settings /> */}
+        <Inventory />
     </div>
   );
 }
