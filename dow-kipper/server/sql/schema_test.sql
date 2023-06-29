@@ -1,6 +1,6 @@
-drop database if exists collections;
-create database collections;
-use collections;
+drop database if exists collections_test;
+create database collections_test;
+use collections_test;
 
 create table app_user (
     app_user_id int primary key auto_increment,
@@ -42,29 +42,22 @@ insert into app_user_role
     (1, 2),
     (2, 1);
     
-create table item_type (
-	item_type_id int not null,
-    type_name varchar(50) not null
-);
-
-create table collectible (
-	collectible_id int primary key auto_increment,
-    `name` varchar(50) not null,
-    type_name varchar(50) not null,
-    constraint fk_type_name
-		foreign key(type_name)
-        references item_type(type_name)
-);
-
 create table collection (
     collection_id int primary key auto_increment,
+    `name` varchar(50) not null,
     app_user_id int not null,
-    collectible_id int not null,
-    price DECIMAL not null,
+    `value` DECIMAL not null,
     constraint fk_app_user_id
         foreign key(app_user_id)
-        references app_user(app_user_id),
-	constraint fk_collectibe_id
-		foreign key(collectible_id)
-        references collectible(collectible_id)
+        references app_user(app_user_id)
+);
+
+create table item (
+	item_id int primary key auto_increment,
+    `name` varchar(50) not null,
+    collection_id int not null,
+    `value` DECIMAL not null,
+    constraint fk_collection_id
+		foreign key(collection_id)
+        references collection(collection_id)
 );

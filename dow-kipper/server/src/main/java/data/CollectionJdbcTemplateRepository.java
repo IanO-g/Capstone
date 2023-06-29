@@ -21,13 +21,13 @@ public class CollectionJdbcTemplateRepository implements CollectionRepository {
 
     @Override
     public List<Collection> findAllByUserId(int userId) {
-        final String sql = "select collection_id, user_id, name from collection where user_id = ?;";
+        final String sql = "select collection_id, user_id, name from collection where app_user_id = ?;";
         return jdbcTemplate.query(sql, new CollectionMapper(userRepository), userId);
     }
 
     @Override
     public Collection findById(long collectionId) {
-        final String sql = "select collection_id, user_id, name from collection where collection_id = ?;";
+        final String sql = "select collection_id, app_user_id, name from collection where collection_id = ?;";
         Collection result = jdbcTemplate.query(sql, new CollectionMapper(userRepository), collectionId)
                 .stream()
                 .findAny().orElse(null);
@@ -37,7 +37,7 @@ public class CollectionJdbcTemplateRepository implements CollectionRepository {
     @Override
     @Transactional
     public int addCollection(Collection collection) {
-        final String sql = "INSERT INTO collection (user_id, name) VALUES (?, ?)";
+        final String sql = "INSERT INTO collection (app_user_id, name) VALUES (?, ?)";
 
         return jdbcTemplate.update(sql, collection.getUser().getId(), collection.getName());
     }
@@ -45,7 +45,7 @@ public class CollectionJdbcTemplateRepository implements CollectionRepository {
     @Override
     public boolean updateCollection(Collection collection) {
         final String sql = "update collection set "
-                + "user_id = ?, "
+                + "app_user_id = ?, "
                 + "name = ? "
                 + "where collection_id = ?";
 
