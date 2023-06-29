@@ -3,16 +3,16 @@ package models;
 import java.math.BigDecimal;
 
 public class Item {
-    private Long id;
+    private int id;
     private String name;
-    private BigDecimal price;
+    private BigDecimal value;
     private Collection collection;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -25,11 +25,11 @@ public class Item {
     }
 
     public BigDecimal getPrice() {
-        return price;
+        return value;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPrice(BigDecimal value) {
+        this.value = value;
     }
 
     public Collection getCollection() {

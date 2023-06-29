@@ -18,7 +18,7 @@ public class CollectionMapper implements RowMapper<Collection> {
     @Override
     public Collection mapRow(ResultSet resultSet, int i) throws SQLException {
         Collection collection = new Collection();
-        collection.setId(resultSet.getLong("collection_id"));
+        collection.setId(resultSet.getInt("collection_id"));
         long userId = resultSet.getLong("user_id");
         User user = userRepository.findById(userId);
         collection.setUser(user);

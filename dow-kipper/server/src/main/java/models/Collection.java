@@ -1,17 +1,29 @@
 package models;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Collection {
-    private Long id;
+    private int id;
     private String name;
     private User user;
+
+    private BigDecimal value;
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
     private List<Item> items;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

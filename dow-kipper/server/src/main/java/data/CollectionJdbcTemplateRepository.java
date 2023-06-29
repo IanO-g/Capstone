@@ -3,9 +3,13 @@ package data;
 import data.mappers.CollectionMapper;
 import models.Collection;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 @Repository
 public class CollectionJdbcTemplateRepository implements CollectionRepository {
@@ -36,10 +40,24 @@ public class CollectionJdbcTemplateRepository implements CollectionRepository {
 
     @Override
     @Transactional
-    public int addCollection(Collection collection) {
-        final String sql = "INSERT INTO collection (app_user_id, name) VALUES (?, ?)";
+    public Collection addCollection(Collection collection) {
+        final String sql = "insert into collection (app_user_id, `name`, `value`) VALUES (?, ?)";
 
-        return jdbcTemplate.update(sql, collection.getUser().getId(), collection.getName());
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        int rowsAffected = jdbcTemplate.update( connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, collection.getUser().getId());
+                    ps.setString(2, collection.getName());
+                    ps.setBigDecimal(3, collection.getValue());
+                    return ps;
+                    },keyHolder);
+
+        if(rowsAffected <= 0){
+            return null;
+        }
+
+        collection.setId(keyHolder.getKey().intValue());
+        return collection;
     }
 
     @Override

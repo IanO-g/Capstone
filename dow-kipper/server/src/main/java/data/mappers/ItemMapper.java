@@ -18,7 +18,7 @@ public class ItemMapper implements RowMapper<Item> {
     @Override
     public Item mapRow(ResultSet resultSet, int i) throws SQLException {
         Item item = new Item();
-        item.setId(resultSet.getLong("item_id"));
+        item.setId(resultSet.getInt("item_id"));
 
         Long collectionId = resultSet.getLong("collection_id");
         Collection collection = collectionRepository.findById(collectionId);
