@@ -26,14 +26,14 @@ public class CollectionJdbcTemplateRepository implements CollectionRepository {
     @Override
     @Transactional
     public List<Collection> findAllByUserId(int userId) {
-        final String sql = "select collection_id, app_user_id, `name` from collection where app_user_id = ?;";
+        final String sql = "select collection_id, app_user_id, `name`, `value` from collection where app_user_id = ?;";
         return jdbcTemplate.query(sql, new CollectionMapper(appUserJdbcTemplateRepository), userId);
     }
 
     @Override
     @Transactional
-    public Collection findById(long collectionId) {
-        final String sql = "select collection_id, app_user_id, `name` from collection where collection_id = ?;";
+    public Collection findById(int collectionId) {
+        final String sql = "select collection_id, app_user_id, `name`, `value` from collection where collection_id = ?;";
         Collection result = jdbcTemplate.query(sql, new CollectionMapper(appUserJdbcTemplateRepository), collectionId)
                 .stream()
                 .findAny().orElse(null);
@@ -43,7 +43,7 @@ public class CollectionJdbcTemplateRepository implements CollectionRepository {
     @Override
     @Transactional
     public Collection addCollection(Collection collection) {
-        final String sql = "insert into collection (app_user_id, `name`, `value`) VALUES (?, ?)";
+        final String sql = "insert into collection (app_user_id, `name`, `value`) VALUES (?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update( connection -> {
@@ -67,10 +67,11 @@ public class CollectionJdbcTemplateRepository implements CollectionRepository {
     public boolean updateCollection(Collection collection) {
         final String sql = "update collection set "
                 + "app_user_id = ?, "
-                + "`name` = ? "
+                + "`name` = ?, "
+                + "`value` = ? "
                 + "where collection_id = ?";
 
-        return jdbcTemplate.update(sql, collection.getUser().getAppUserId(), collection.getName(), collection.getId()) > 0;
+        return jdbcTemplate.update(sql, collection.getUser().getAppUserId(), collection.getName(), collection.getValue() , collection.getId()) > 0;
     }
 
     @Override

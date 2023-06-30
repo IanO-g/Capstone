@@ -31,7 +31,7 @@ create table collection (
     collection_id int primary key auto_increment,
     `name` varchar(50) not null,
     app_user_id int not null,
-    `value` DECIMAL not null,
+    `value` DECIMAL(19,4) not null,
     constraint fk_app_user_id
         foreign key(app_user_id)
         references app_user(app_user_id)
@@ -41,8 +41,9 @@ create table item (
 	item_id int primary key auto_increment,
     `name` varchar(50) not null,
     collection_id int not null,
-    `value` DECIMAL not null,
-    constraint fk_collection_id
+    `value` DECIMAL(19,4) not null,
+	constraint fk_collection_id
 		foreign key(collection_id)
         references collection(collection_id)
+        ON DELETE CASCADE
 );

@@ -22,7 +22,8 @@ public class CollectionMapper implements RowMapper<Collection> {
         int userId = resultSet.getInt("app_user_id");
         AppUser user = appUserJdbcTemplateRepository.findById(userId);
         collection.setUser(user);
-        collection.setName(resultSet.getString("`name`"));
+        collection.setName(resultSet.getString("name"));
+        collection.setValue(resultSet.getBigDecimal("value"));
         return collection;
     }
 }
