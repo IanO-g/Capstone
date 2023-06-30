@@ -52,7 +52,7 @@ public class CollectionService {
         }
 
         if (collection.getId() <= 0) {
-            result.addMessage("CollectionId must be set for `update` operation", ResultType.INVALID);
+            result.addMessage("CollectionId must be set for update", ResultType.INVALID);
             return result;
         }
 
@@ -84,8 +84,7 @@ public class CollectionService {
             result.addMessage("Collection cannot be null", ResultType.INVALID);
             return result;
         }
-
-        // Validate other fields according to your requirement
+        
         if (collection.getName() == null || collection.getName().trim().isEmpty()) {
             result.addMessage("Name is required", ResultType.INVALID);
         }
