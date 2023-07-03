@@ -7,7 +7,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       {/* <Navbar /> */}
-      <Collections />
+      {/* <Collections /> */}
       {/* <Formsubmit /> */}
     </div>
   );
