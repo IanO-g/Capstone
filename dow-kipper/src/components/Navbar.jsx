@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Link } from 'react-router-dom'
 import logo from "../assets/logoName.png"
 import {
   SearchIcon,
@@ -11,7 +12,9 @@ const Navbar = () => {
   return (
     <div>
       <nav className="bg-gray-400 flex items-center justify-center">
-        <img className="w-16 h-16 mr-6" src={logo} alt="logo" />
+        <Link to="/">
+          <img className="w-16 h-16 mr-6" src={logo} alt="logo" />
+        </Link>
         <ul className="flex items-center justify-center h-16">
           <li className="mr-6">Shop By Category</li>
         </ul>
@@ -26,12 +29,28 @@ const Navbar = () => {
           </div>
         </div>
         <ul className="flex items-center justify-center h-16">
-          <li className="mr-6">Home</li>
-          <li className="mr-6">About</li>
-          <li className="mr-6">Services</li>
-          <li className="mr-6">Contact</li>
-          <li className="mr-6">Sign-Up</li>
-          <li className="mr-6">Login</li>
+          {/* Added Routing */}
+          <li className="mr-6">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="mr-6">
+            <Link to="/collections">Collections</Link>
+          </li>
+          <li className="mr-6">
+            <Link to="/inventory">Inventory</Link>
+          </li>
+          <li className="mr-6">
+            <Link to="/user">User</Link>
+          </li>
+          <li className="mr-6">
+            <Link to="/setting">Settings</Link>
+          </li>
+          <li className="mr-6">
+            <Link to="/signup">Sign-Up</Link>
+          </li>
+          <li className="mr-6">
+            <Link to="/login">Login</Link>
+          </li>
         </ul>
         <div className="flex space-x-4">
           <a href="/shopping" className="text-black">
