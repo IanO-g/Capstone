@@ -47,8 +47,8 @@ create table item (
 create table collection_item (
 	collection_id int not null,
     item_id int not null,
-    isSold boolean not null,
-    listedPrice DECIMAL(19,4) not null,
+    is_sold boolean not null,
+    listed_price DECIMAL(19,4) not null,
     constraint pk_collection_item
 		primary key (collection_id, item_id),
         constraint fk_collection_id

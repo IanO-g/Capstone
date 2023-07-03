@@ -13,7 +13,7 @@ public enum Grade {
     TEN(10);
 
     private double grade;
-    Grade(double i) {
+    Grade(double grade) {
         this.grade = grade;
     }
 
