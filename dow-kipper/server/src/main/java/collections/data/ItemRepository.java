@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface
 ItemRepository {
-    public List<Item> findAllByCollectionId(int collectionId);
+    List<Item> findAll();
     public Item findById(int itemId);
     public Item addItem(Item item);
     public boolean updateItem(Item item);

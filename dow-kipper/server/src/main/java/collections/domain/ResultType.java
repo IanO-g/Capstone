@@ -1,4 +1,7 @@
 package collections.domain;
 
-public class ResultType {
+public enum ResultType {
+    SUCCESS,
+    NOT_FOUND,
+    INVALID
 }

@@ -41,9 +41,9 @@ create table item (
 	item_id int primary key auto_increment,
     `name` varchar(50) not null,
     collection_id int not null,
-    `value` DECIMAL(19,4) not null,
-    constraint fk_collection_id
-		foreign key(collection_id)
-        references collection(collection_id)
-        ON DELETE CASCADE
+    `value` DECIMAL(19,4) not null
+--     constraint fk_collection_id
+-- 		foreign key(collection_id)
+--         references collection(collection_id)
+--         ON DELETE CASCADE
 );

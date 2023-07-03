@@ -15,11 +15,11 @@ begin
     alter table app_user auto_increment = 1;
     delete from app_user_role;
   
-	insert into item (`name`,collection_id,`value`)
+	insert into item (`name`,`value`,grade)
 	values 
-	('test', 1, 20.12),
-	('testTwo',2,44.10),
-	('testThree',1,5.15);
+	('test', 20.12,'UNGRADED'),
+	('testTwo',44.10,'NINEFIVE'),
+	('testThree',5.15,'SEVEN');
 	
 	insert into collection (app_user_id, `name`, `value`)
 	values 
@@ -41,8 +41,9 @@ begin
 	values
 	(1, 2),
 	(2, 1);
-        
-      set foreign_key_checks = 1;
+	
+	set foreign_key_checks = 1;
 	
 end //
 delimiter ;
+

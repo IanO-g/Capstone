@@ -3,6 +3,7 @@ package collections.data;
 import collections.data.mappers.ItemMapper;
 import collections.models.Item;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -16,25 +17,27 @@ import java.util.List;
 public class ItemJdbcTemplateRepository implements ItemRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final CollectionRepository collectionRepository;
 
-    public ItemJdbcTemplateRepository(JdbcTemplate jdbcTemplate, CollectionRepository collectionRepository) {
+    private final RowMapper<Item> rowMapper = new ItemMapper();
+    public ItemJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.collectionRepository = collectionRepository;
     }
 
     @Override
-    @Transactional
-    public List<Item> findAllByCollectionId(int collectionId) {
-        final String sql = "select item_id, `name`, collection_id, value from item where collection_id = ?;";
-        return jdbcTemplate.query(sql, new ItemMapper(collectionRepository), collectionId);
+    public List<Item> findAll() {
+        String sql = "select item_id, " +
+                "`name`, " +
+                "`value`," +
+                "grade " +
+                "from item;";
+        return jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override
     @Transactional
     public Item findById(int itemId) {
-        final String sql = "select item_id, collection_id, `name`, value from item where item_id = ?;";
-        Item result = jdbcTemplate.query(sql, new ItemMapper(collectionRepository), itemId)
+        final String sql = "select item_id,`name`, `value`, grade from item where item_id = ?;";
+        Item result = jdbcTemplate.query(sql, rowMapper, itemId)
                 .stream()
                 .findAny().orElse(null);
         return result;
@@ -44,13 +47,13 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     @Override
     @Transactional
     public Item addItem(Item item) {
-        final String sql = "insert into item (collection_id, `name`, `value`) values (?, ?, ?);";
+        final String sql = "insert into item (`name`, `value`, grade) values (?, ?, ?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setInt(1,item.getCollection().getId());
-                ps.setString(2,item.getName());
-                ps.setBigDecimal(3,item.getValue());
+                ps.setString(1,item.getName());
+                ps.setBigDecimal(2,item.getValue());
+                ps.setString(3,item.getGrade().toString());
                 return ps;
                 }, keyHolder);
         if(rowsAffected <= 0){
@@ -65,13 +68,11 @@ public class ItemJdbcTemplateRepository implements ItemRepository {
     @Transactional
     public boolean updateItem(Item item) {
         final String sql = "update item set "
-                + "collection_id = ?, "
                 + "`name` = ?, "
-                + "value = ? "
+                + "`value` = ?, "
+                + "grade = ? "
                 + "where item_id = ?";
-
-        int collectionId = item.getCollection().getId();
-        return jdbcTemplate.update(sql, collectionId, item.getName(), item.getValue(), item.getId()) > 0;
+        return jdbcTemplate.update(sql, item.getName(), item.getValue(), item.getGrade().toString(), item.getId()) > 0;
     }
 
     @Override

@@ -7,16 +7,17 @@ public class Item {
     private int id;
     private String name;
     private BigDecimal value;
-    private Collection collection;
+
+    private Grade grade;
 
     public Item() {
     }
 
-    public Item(int id, String name, BigDecimal value, Collection collection) {
+    public Item(int id, String name, BigDecimal value, Grade grade) {
         this.id = id;
         this.name = name;
         this.value = value;
-        this.collection = collection;
+        this.grade = grade;
     }
 
     public int getId() {
@@ -43,12 +44,12 @@ public class Item {
         this.value = value;
     }
 
-    public Collection getCollection() {
-        return collection;
+    public Grade getGrade() {
+        return grade;
     }
 
-    public void setCollection(Collection collection) {
-        this.collection = collection;
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 
     @Override
@@ -56,11 +57,12 @@ public class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return id == item.id && Objects.equals(name, item.name) && Objects.equals(value, item.value) && Objects.equals(collection, item.collection);
+        return id == item.id && Objects.equals(name, item.name) && Objects.equals(value, item.value) && grade == item.grade;
     }
+
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, value, collection);
+        return Objects.hash(id, name, value, grade);
     }
 
     @Override
@@ -69,7 +71,7 @@ public class Item {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", value=" + value +
-                ", collection=" + collection +
+                ", grade=" + grade +
                 '}';
     }
 }
