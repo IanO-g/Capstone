@@ -27,7 +27,8 @@ public class ItemController {
         return itemService.getItemsByCollectionId(collectionId);
     }
 
-    @GetMapping("/collection/{collectionId}/{itemId}")
+    //find by collection and item id
+    @GetMapping("/{collectionId}/{itemId}")
     public ResponseEntity<Item> findByCollectionAndItemId(@PathVariable int collectionId,@PathVariable int itemId ){
         return ResponseEntity.ok(itemService.getCollectionItem(collectionId,itemId));
     }

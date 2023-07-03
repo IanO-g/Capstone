@@ -44,6 +44,8 @@ public class CollectionService {
         }
 
         collection = collectionRepository.addCollection(collection);
+        BigDecimal collectionValue = getCollectionValue(collection.getId());
+        collection.setValue(collectionValue);
         result.setPayload(collection);
         return result;
     }
@@ -64,7 +66,7 @@ public class CollectionService {
             String msg = String.format("CollectionId: %s, not found", collection.getId());
             result.addMessage(msg, ResultType.NOT_FOUND);
         }
-
+        collection.setValue(getCollectionValue(collection.getId()));
         return result;
     }
 

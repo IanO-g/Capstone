@@ -1,6 +1,6 @@
-drop database if exists collections;
-create database collections;
-use collections;
+drop database if exists collections_test;
+create database collections_test;
+use collections_test;
 
 create table app_user (
     app_user_id int primary key auto_increment,
@@ -26,7 +26,7 @@ create table app_user_role (
         foreign key (app_role_id)
         references app_role(app_role_id)
 );
-
+    
 create table collection (
     collection_id int primary key auto_increment,
     `name` varchar(50) not null,
@@ -40,10 +40,22 @@ create table collection (
 create table item (
 	item_id int primary key auto_increment,
     `name` varchar(50) not null,
-    collection_id int not null,
-    `value` DECIMAL(19,4) not null
---     constraint fk_collection_id
--- 		foreign key(collection_id)
---         references collection(collection_id)
---         ON DELETE CASCADE
+    `value` DECIMAL(19,4) not null,
+    grade ENUM('UNGRADED', 'SEVEN', 'EIGHT', 'NINE', 'NINEFIVE', 'TEN') not null
 );
+
+create table collection_item (
+	collection_id int not null,
+    item_id int not null,
+    is_sold boolean not null,
+    listed_price DECIMAL(19,4) not null,
+    constraint pk_collection_item
+		primary key (collection_id, item_id),
+        constraint fk_collection_id
+			foreign key (collection_id)
+            references collection(collection_id),
+		constraint fk_item_id
+			foreign key (item_id)
+            references item(item_id)
+);
+
