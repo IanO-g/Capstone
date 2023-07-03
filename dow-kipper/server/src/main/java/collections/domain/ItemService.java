@@ -1,18 +1,25 @@
 package collections.domain;
 
+import collections.data.CollectionItemRepository;
 import collections.data.ItemRepository;
+import collections.models.CollectionItem;
 import collections.models.Item;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
     private final ItemRepository itemRepository;
 
-    public ItemService(ItemRepository itemRepository) {
+    private final CollectionItemRepository collectionItemRepository;
+
+    public ItemService(ItemRepository itemRepository, CollectionItemRepository collectionItemRepository) {
         this.itemRepository = itemRepository;
+        this.collectionItemRepository = collectionItemRepository;
     }
 
     public List<Item> findAll() {
@@ -62,6 +69,15 @@ public class ItemService {
         return itemRepository.deleteItem(itemId);
     }
 
+    public List<Item> getItemsByCollectionId(int collectionId){
+        return collectionItemRepository.getCollectionItemByCollectionId(collectionId)
+                .stream().map(CollectionItem::getItem).collect(Collectors.toList());
+    }
+
+    public Item getCollectionItem(int collectionId, int itemId){
+        CollectionItem collectionItem = collectionItemRepository.getCollectionItem(collectionId,itemId);
+        return collectionItem.getItem();
+    }
     private Result<Item> validate(Item item) {
         Result<Item> result = new Result<>();
         if (item == null) {

@@ -1,7 +1,9 @@
 package collections.domain;
 
+import collections.data.CollectionItemRepository;
 import collections.data.CollectionRepository;
 import collections.models.Collection;
+import collections.models.CollectionItem;
 import collections.models.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,11 @@ import java.util.List;
 @Service
 public class CollectionService {
     private final CollectionRepository collectionRepository;
-
+    private final CollectionItemRepository collectionItemRepository;
     @Autowired
-    public CollectionService(CollectionRepository collectionRepository) {
+    public CollectionService(CollectionRepository collectionRepository, CollectionItemRepository collectionItemRepository) {
         this.collectionRepository = collectionRepository;
+        this.collectionItemRepository = collectionItemRepository;
     }
 
     //get all collections by user id
@@ -75,6 +78,14 @@ public class CollectionService {
         List<Collection> collections = collectionRepository.findAllByUserId(userId);
         return collections.stream()
                 .map(Collection::getValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    //get collection value
+    public BigDecimal getCollectionValue(int collectionId){
+        List<CollectionItem> collectionItems = collectionItemRepository.getCollectionItemByCollectionId(collectionId);
+        return collectionItems.stream().map(CollectionItem::getItem)
+                .map(Item::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
