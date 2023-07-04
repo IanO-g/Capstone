@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import Navbar from './Navbar';
+import React, { useState } from "react";
+import Navbar from "./Navbar";
 
 const API_DATA =
   "https://www.sportscardspro.com/api/product?t=0ed6fa9c6ab7bb46cb3304b030b13255919e8c59&id=2530687%27";
 
 const Itemsubmit = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -32,7 +32,7 @@ const Itemsubmit = () => {
     } catch (error) {
       console.error("AN ERROR OCCURRED", error);
     }
-  }
+  };
 
   return (
     <div>
@@ -69,6 +69,6 @@ const Itemsubmit = () => {
       </form>
     </div>
   );
-}
+};
 
-export default Itemsubmit
+export default Itemsubmit;
