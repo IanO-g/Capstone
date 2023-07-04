@@ -48,7 +48,7 @@ const Inventory: React.FC = () => {
           </div>
           <div className="card p-4 flex flex-col items-center">
             <h2 className="mb-2 text-lg font-bold text-blue-500 tracking-wide capitalize">
-              Blastoise #009/165R Commissioned Presentation
+              Blastoise #009/165R Commissioned
             </h2>
             <img
               className="object-cover h-80 w-full"

@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import coverLogo from "../assets/cover.png";
+import axios from "axios";
 
 const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
-    // Reset the form
-    setEmail("");
-    setPassword("");
+
+
+    try {
+      const response = await axios.post("/api/signup", { email, password });
+      console.log("Signup was successful:", response.data);
+      // Reset the form
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.error("Signup failed:", error);
+    }
+
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
