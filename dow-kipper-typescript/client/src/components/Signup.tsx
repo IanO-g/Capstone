@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import coverLogo from "../assets/cover.png";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -34,6 +35,7 @@ const Signup: React.FC = () => {
 
   return (
     <>
+      <Navbar />
       <div className="w-full h-screen">
         <img
           className="hidden sm:block absolute w-full h-64 object-cover"

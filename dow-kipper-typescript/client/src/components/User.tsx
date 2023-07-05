@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from './Navbar';
 
 interface Collection {
   id: number;
@@ -18,6 +19,7 @@ interface UserProps {
 const User: React.FC = () => {
   return (
     <div>
+      <Navbar />
       <h1>User Page</h1>
       <h2>Collections:</h2>
       <ul>

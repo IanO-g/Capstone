@@ -7,7 +7,9 @@ import User from "./components/User";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Inventory from "./components/Inventory";
+import Settings from "./components/Settings";
 import Signup from "./components/Signup";
+import Login from "./components/Login";
 import { Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
@@ -18,7 +20,10 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<Collections />} />
         <Route path="/inventory" element={<Inventory />} />
+        <Route path="/user" element={<User />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       {/* <Footer /> */}
     </>
