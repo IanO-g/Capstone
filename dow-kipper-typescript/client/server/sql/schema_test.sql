@@ -26,7 +26,7 @@ create table app_user_role (
         foreign key (app_role_id)
         references app_role(app_role_id)
 );
-
+    
 create table collection (
     collection_id int primary key auto_increment,
     `name` varchar(50) not null,

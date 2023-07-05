@@ -1,13 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import axios from "axios";
 
 AOS.init();
 
+interface Collection {
+  collection_id: number;
+  name: string;
+}
+
 
 const Collections: React.FC = () => {
+  const [collection, setCollection] = useState<Collection[]>([]);
+
+
+  const handleAddCollection = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/collections", {
+        name: "New Collection",
+      });
+
+      const newCollection = response.data;
+      setCollection([...collection, newCollection]);
+    } catch (error) {
+      console.error("Failed to add a collection:", error);
+    }
+  };
+
+    const handleEditCollection = (collection_id: number) => {
+      console.log("Editing collection with ID:", collection_id);
+    };
+
+    const handleDeleteCollection = async (collectionId: number) => {
+      try {
+        await axios.delete(`http://localhost:3000/collections/${collectionId}`);
+        setCollection(
+          collection.filter(
+            (collection) => collection.collection_id !== collectionId
+          )
+        );
+      } catch (error) {
+        console.error("Failed to delete the collection:", error);
+      }
+    };
+
   return (
     <div>
       <div className="main-collections">
@@ -74,6 +113,28 @@ const Collections: React.FC = () => {
             </p>
           </div>
         </div>
+
+          Add Collection
+          <div className="button-container ga">
+            <button
+              onClick={handleAddCollection}
+              className="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded-md"
+            >
+              Add Collection
+            </button>
+            <button
+              onClick={() => handleEditCollection(collection.collection_id)}
+              className="px-4 py-2 mt-2 bg-blue-500 text-white rounded-md"
+            >
+              Edit Collection
+            </button>
+            <button
+              onClick={() => handleDeleteCollection(collection.collection_id)}
+              className="px-4 py-2 mt-2 bg-red-500 text-white rounded-md"
+            >
+              Delete Collection
+            </button>
+          </div>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { Carousel, Button } from "antd";
 
 const Hero: React.FC = () => {
   const ref = useRef()
@@ -20,26 +19,6 @@ const Hero: React.FC = () => {
         <h1 className="text-white mt-12 text-4xl font-bold" data-aos="fade up">
           Discover Trading Cards by Category
         </h1>
-        {/* AntD Carousel. Please install the library first to use */}
-        <div
-          style={{ width: "300px", height: "300px", backgroundColor: "blue" }}
-        >
-          <Carousel autoplay pauseOnHover={true} pauseOnDotsHover={true} ref={ref}>
-            <div>
-              <h1 style={{ color: "white", lineHeight: "300px" }}>Slide 1</h1>
-            </div>
-            <div>
-              <h1 style={{ color: "white", lineHeight: "300px" }}>Slide 2</h1>
-            </div>
-            <div>
-              <h1 style={{ color: "white", lineHeight: "300px" }}>Slide 3</h1>
-            </div>
-          </Carousel>
-          <div>
-            <Button onClick={() => {ref.current.prev()}}>Prev</Button>
-            <Button onClick={() => {ref.current.next()}}>Next</Button>
-          </div>
-        </div>
       </div>
     </div>
   );
