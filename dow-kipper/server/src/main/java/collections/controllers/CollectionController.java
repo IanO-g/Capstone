@@ -64,6 +64,20 @@ public class CollectionController {
         }
         return new ResponseEntity<> (result.getMessages(), HttpStatus.BAD_REQUEST);
     }
+
+    //add item to collection
+    @PostMapping("/item/{collectionId}/{itemId}")
+    public ResponseEntity<Object> addItemToCollection(@PathVariable int collectionId,@PathVariable int itemId, @RequestBody CollectionItem collectionItem){
+        if(collectionId != collectionItem.getCollection().getId() || itemId != collectionItem.getItem().getId()){
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        Result<CollectionItem> result = collectionItemService.addItemToACollection(collectionItem);
+        if(result.isSuccess()) {
+            return new ResponseEntity<>(result.getPayload(),HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(result.getMessages(), HttpStatus.BAD_REQUEST);
+    }
+
     //update collection with provided collection ID
     @PutMapping("/{collectionId}")
     public ResponseEntity<Object> updateCollection(@PathVariable int collectionId, @RequestBody Collection collection) {
@@ -76,15 +90,6 @@ public class CollectionController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else if(result.getResultType() == ResultType.NOT_FOUND) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(result.getMessages(), HttpStatus.BAD_REQUEST);
-    }
-    //add item to collection
-    @PostMapping
-    public ResponseEntity<Object> addItemToCollection(@RequestBody CollectionItem collectionItem){
-        Result<CollectionItem> result = collectionItemService.addItemToACollection(collectionItem);
-        if(result.isSuccess()) {
-            return new ResponseEntity<>(result.getPayload(),HttpStatus.CREATED);
         }
         return new ResponseEntity<>(result.getMessages(), HttpStatus.BAD_REQUEST);
     }
