@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/security/refresh-token").authenticated()
                 .antMatchers(HttpMethod.GET,
                         "/api/collection/*","/api/item/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/collection", "/api/collection/*","/api/item").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/collection", "/api/collection/**","/api/item").authenticated()
                 .antMatchers(HttpMethod.PUT,  "/api/collection/*","/api/item/*").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/api/collection/*").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/api/item/*").hasAuthority("ADMIN")

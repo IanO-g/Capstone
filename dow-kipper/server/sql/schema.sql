@@ -1,6 +1,6 @@
-drop database if exists collections_test;
-create database collections_test;
-use collections_test;
+drop database if exists collections;
+create database collections;
+use collections;
 
 create table app_user (
     app_user_id int primary key auto_increment,
