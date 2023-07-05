@@ -27,8 +27,6 @@ const Footer: React.FC = () => {
         <div className="cards grid grid-cols-3 gap-4">
           <div
             className="card p-4 rounded border border-black ml-4 h-5/6"
-            // data-aos="fade-left"
-            // data-aos-delay="800"
           >
             <h3 className="font-semibold text-xl">About:</h3>
             <p className="">
@@ -41,8 +39,6 @@ const Footer: React.FC = () => {
           </div>
           <div
             className="card p-4 rounded border border-black h-5/6"
-            // data-aos="fade-up"
-            // data-aos-delay="800"
           >
             <h3 className="font-semibold text-xl">Join Our Community:</h3>
             <p>
@@ -69,8 +65,6 @@ const Footer: React.FC = () => {
           </div>
           <div
             className="p-4 rounded border border-black mr-4 h-5/6"
-            // data-aos="fade-right"
-            // data-aos-delay="800"
           >
             <h3 className="font-semibold text-xl">Partner with Us:</h3>
             <p className="">
