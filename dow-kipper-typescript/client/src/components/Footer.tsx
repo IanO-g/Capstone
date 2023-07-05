@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
           <div className="card p-4 rounded border border-black ml-4">
             <h3 className="font-semibold">About:</h3>
             <p className="">
-              Discover Dow Kipper, your platform for trading cards and
+              Introducing Dow Kipper, your platform for trading cards and
               collectibles. Explore a vast range of items, trade with fellow
               enthusiasts, and stay informed with real-time data. Unleash your
               passion for collecting and elevate your collecting experience with
