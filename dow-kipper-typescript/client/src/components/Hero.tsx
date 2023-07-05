@@ -1,7 +1,9 @@
-import React from "react";
-import { Carousel } from "antd";
+import React, { useRef } from "react";
+import { Carousel, Button } from "antd";
 
 const Hero: React.FC = () => {
+  const ref = useRef()
+
   return (
     /* Implement Carousel of Pokemon Cards */
     // AntD library perhaps
@@ -22,7 +24,7 @@ const Hero: React.FC = () => {
         <div
           style={{ width: "300px", height: "300px", backgroundColor: "blue" }}
         >
-          <Carousel>
+          <Carousel autoplay pauseOnHover={true} pauseOnDotsHover={true} ref={ref}>
             <div>
               <h1 style={{ color: "white", lineHeight: "300px" }}>Slide 1</h1>
             </div>
@@ -33,6 +35,10 @@ const Hero: React.FC = () => {
               <h1 style={{ color: "white", lineHeight: "300px" }}>Slide 3</h1>
             </div>
           </Carousel>
+          <div>
+            <Button onClick={() => {ref.current.prev()}}>Prev</Button>
+            <Button onClick={() => {ref.current.next()}}>Next</Button>
+          </div>
         </div>
       </div>
     </div>
