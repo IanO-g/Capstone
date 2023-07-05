@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import axios from "axios";
 
 const Settings: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -9,13 +10,24 @@ const Settings: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Username:", username);
     console.log("Password:", password);
-    // Reset the form
-    setUsername("");
-    setPassword("");
+    try {
+      // Make an API request to update the password
+      const response = await axios.put("/api/updatePassword", {
+        username,
+        newPassword: password,
+      });
+      console.log("Password update response:", response.data);
+
+      // Reset the form
+      setUsername("");
+      setPassword("");
+    } catch (error) {
+      console.error("Error updating password:", error);
+    }
   };
 
   return (
