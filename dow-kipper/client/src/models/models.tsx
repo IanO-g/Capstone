@@ -1,10 +1,10 @@
 export enum Grade {
-        UNGRADED = 0,
-        SEVEN = 7,
-        EIGHT = 8,
-        NINE = 9,
-        NINEFIVE = 9.5,
-        TEN = 10
+        UNGRADED = "UNGRADED",
+        SEVEN = "SEVEN",
+        EIGHT = "EIGHT",
+        NINE = "NINE",
+        NINEFIVE = "NINEFIVE",
+        TEN = "TEN"
 }
 
 export interface Init {

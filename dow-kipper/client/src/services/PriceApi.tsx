@@ -1,5 +1,7 @@
+const apiToken = process.env.REACT_APP_API_TOKEN;
+
 import('node-fetch').then(({default: fetch}) => {
-    fetch('https://www.pricecharting.com/api/offers?t=0ed6fa9c6ab7bb46cb3304b030b13255919e8c59&id=630417')
+    fetch(`https://www.pricecharting.com/api/offers?t=${apiToken}&id=630417`)
     .then(response => response.json())
     .then(data => {
         console.log('Status: ', data.status);
@@ -13,7 +15,7 @@ import('node-fetch').then(({default: fetch}) => {
 // to get sold history
 
 import('node-fetch').then(({default: fetch}) => {
-    fetch('https://www.pricecharting.com/api/offers?t=0ed6fa9c6ab7bb46cb3304b030b13255919e8c59&id=630417&status=sold')
+    fetch(`https://www.pricecharting.com/api/offers?t=${apiToken}&id=630417&status=sold`)
     .then(response => response.json())
     .then(data => {
         console.log('Status: ', data.status);

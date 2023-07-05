@@ -6,7 +6,6 @@ import "aos/dist/aos.css";
 
 AOS.init();
 
-
 const Collections: React.FC = () => {
   return (
     <div>
