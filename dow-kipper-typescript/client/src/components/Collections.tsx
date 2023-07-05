@@ -1,14 +1,22 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
 
 
 const Collections: React.FC = () => {
   return (
     <div>
       <div className="main-collections">
-        <h1 className="ml-3 mt-12 text-4xl font-bold">View Your Collections</h1>
-        <div className="collections-container grid grid-cols-3 gap-4 mt-4">
+        <h1 className="ml-3 mt-8 text-4xl font-bold">View Your Collections</h1>
+        <div
+          className="collections-container grid grid-cols-3 gap-4 mt-4"
+          data-aos="fade-right"
+          data-aos-delay="400"
+        >
           <div className="card p-4 flex flex-col items-center">
             <h2 className="mb-4 text-lg font-bold text-indigo-700">
               Yugioh Collection
@@ -25,7 +33,11 @@ const Collections: React.FC = () => {
               tenetur doloremque ipsum illum est? Obcaecati?
             </p>
           </div>
-          <div className="card p-4 flex flex-col items-center">
+          <div
+            className="card p-4 flex flex-col items-center"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
             <h2 className="mb-4 text-lg font-bold text-indigo-700">
               Baseball Collection
             </h2>
@@ -41,7 +53,11 @@ const Collections: React.FC = () => {
               aliquid quasi.
             </p>
           </div>
-          <div className="card p-4 flex flex-col items-center">
+          <div
+            className="card p-4 flex flex-col items-center"
+            data-aos="fade-left"
+            data-aos-delay="800"
+          >
             <h2 className="mb-4 text-lg font-bold text-indigo-700">
               Pokemon Collection
             </h2>

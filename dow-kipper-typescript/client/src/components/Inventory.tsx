@@ -6,9 +6,13 @@ const Inventory: React.FC = () => {
   return (
     <div>
       <div className="main-collections">
-        <h1 className="ml-3 mt-12 text-4xl font-bold">View Your Inventory</h1>
+        <h1 className="ml-3 mt-8 text-4xl font-bold">View Your Inventory</h1>
         <div className="collections-container grid grid-cols-3 gap-4 mt-4">
-          <div className="card p-4 flex flex-col items-center">
+          <div
+            className="card p-4 flex flex-col items-center"
+            data-aos="flip-right"
+            data-aos-delay="400"
+          >
             <h2 className="mb-2 text-lg font-bold text-red-500 tracking-wide capitalize">
               Charizard [1st Edition] #4
             </h2>
@@ -26,7 +30,11 @@ const Inventory: React.FC = () => {
               tenetur doloremque ipsum illum est? Obcaecati?
             </p>
           </div>
-          <div className="card p-4 flex flex-col items-center">
+          <div
+            className="card p-4 flex flex-col items-center"
+            data-aos="flip-up"
+            data-aos-delay="600"
+          >
             <h2 className="mb-2 text-lg font-bold text-yellow-500 tracking-wide capitalize">
               Pikachu Illustrator
             </h2>
@@ -45,7 +53,11 @@ const Inventory: React.FC = () => {
               You can't afford me. Pika, Pika.
             </p>
           </div>
-          <div className="card p-4 flex flex-col items-center">
+          <div
+            className="card p-4 flex flex-col items-center"
+            data-aos="flip-left"
+            data-aos-delay="800"
+          >
             <h2 className="mb-2 text-lg font-bold text-blue-500 tracking-wide capitalize">
               Blastoise #009/165R Commissioned
             </h2>
