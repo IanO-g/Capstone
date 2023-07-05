@@ -11,13 +11,13 @@ import Settings from "./components/Settings";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import { Route, Routes } from "react-router-dom";
-// import Linechart from "./components/Linechart";
+
+import "./index.css";
 
 const App: React.FC = () => {
   return (
     <>
       <Navbar />
-      {/* <Linechart /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<Collections />} />

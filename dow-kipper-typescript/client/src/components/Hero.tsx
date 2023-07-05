@@ -1,4 +1,5 @@
 import React from "react";
+import { Carousel } from "antd";
 
 const Hero: React.FC = () => {
   return (
@@ -17,6 +18,22 @@ const Hero: React.FC = () => {
         <h1 className="text-white mt-12 text-4xl font-bold" data-aos="fade up">
           Discover Trading Cards by Category
         </h1>
+        {/* AntD Carousel. Please install the library first to use */}
+        <div
+          style={{ width: "300px", height: "300px", backgroundColor: "blue" }}
+        >
+          <Carousel>
+            <div>
+              <h1 style={{ color: "white", lineHeight: "300px" }}>Slide 1</h1>
+            </div>
+            <div>
+              <h1 style={{ color: "white", lineHeight: "300px" }}>Slide 2</h1>
+            </div>
+            <div>
+              <h1 style={{ color: "white", lineHeight: "300px" }}>Slide 3</h1>
+            </div>
+          </Carousel>
+        </div>
       </div>
     </div>
   );

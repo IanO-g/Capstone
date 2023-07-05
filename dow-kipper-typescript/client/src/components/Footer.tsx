@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
 
   return (
     <div>
-      <footer className="my-8" data-aos="zoom-in-left" data-aos-delay="800">
+      <footer className="my-12" data-aos="zoom-in-left" data-aos-delay="800">
         <div className="cards grid grid-cols-3 gap-4">
           <div
             className="card p-4 rounded border border-black ml-4 h-5/6"
