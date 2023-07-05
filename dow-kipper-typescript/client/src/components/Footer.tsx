@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
+AOS.init();
 
 const Footer: React.FC = () => {
     const [email, setEmail] = useState("");
@@ -17,11 +21,16 @@ const Footer: React.FC = () => {
       console.log("Contact form submitted");
     };
 
+
   return (
     <div>
       <footer className="my-8">
         <div className="cards grid grid-cols-3 gap-4">
-          <div className="card p-4 rounded border border-black ml-4">
+          <div
+            className="card p-4 rounded border border-black ml-4"
+            data-aos="fade-right"
+            data-aos-delay="1400"
+          >
             <h3 className="font-semibold">About:</h3>
             <p className="">
               Introducing Dow Kipper, your platform for trading cards and
@@ -31,7 +40,11 @@ const Footer: React.FC = () => {
               Dow Kipper.
             </p>
           </div>
-          <div className="card p-4 rounded border border-black">
+          <div
+            className="card p-4 rounded border border-black"
+            data-aos="fade-right"
+            data-aos-delay="1400"
+          >
             <h3 className="font-semibold">Join Our Community:</h3>
             <p>
               Discover the thrilling world of collectibles and trading cards! Be
@@ -55,7 +68,11 @@ const Footer: React.FC = () => {
               </button>
             </form>
           </div>
-          <div className="card p-4 rounded border border-black mr-4">
+          <div
+            className="p-4 rounded border border-black mr-4"
+            data-aos="fade-left"
+            data-aos-delay="1600"
+          >
             <h3 className="font-semibold">Partner with Us:</h3>
             <p>
               Are you interested in partnering with us? We'd love to hear from

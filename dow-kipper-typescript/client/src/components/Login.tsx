@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import coverLogo from "../assets/cover.png";
+import coverLogo from "../assets/cover.png"
 import Navbar from "./Navbar";
 
 const Login: React.FC = () => {

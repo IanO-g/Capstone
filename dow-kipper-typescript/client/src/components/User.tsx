@@ -34,10 +34,7 @@ interface UserProps {
 const User: React.FC = () => {
   return (
     <div>
-      <h1>User Page</h1>
-      <h2>Collections:</h2>
       <Collections />
-      <h2>Inventory:</h2>
       <Inventory />
     </div>
   );
