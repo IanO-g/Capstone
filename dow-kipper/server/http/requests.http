@@ -5,7 +5,7 @@
 
 @urlCoIt = http://localhost:8080/api/collection/item
 
-@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0aW9ucyIsInN1YiI6ImlhbkB0ZXN0LmNvbSIsImFwcF91c2VyX2lkIjoxLCJhdXRob3JpdGllcyI6IlVTRVIiLCJleHAiOjE2ODg1MzY1NTl9.Y2oT0XPx-COR8Nya4hvQVyW1bJ5fJDh8FRW2ozWuQmA
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2xsZWN0aW9ucyIsInN1YiI6ImlhbkB0ZXN0LmNvbSIsImFwcF91c2VyX2lkIjoxLCJhdXRob3JpdGllcyI6IlVTRVIiLCJleHAiOjE2ODg1NzAwOTd9.YnBKyhM33FOPN43Q1CNpmqd8IaciOcyZ3PDoZcAdhig
 
 ###
 ## Create a user
@@ -46,15 +46,15 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "name": "TestItem",
+    "name": "TestItemTwo",
     "value": "10.00",
-    "grade": "SEVEN"
+    "grade": "EIGHT"
 }
 
 ###
 ## Add Item to Collection
 
-POST {{urlCoIt}}/1/1
+POST {{urlCoIt}}/1/3
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

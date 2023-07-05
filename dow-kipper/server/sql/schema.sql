@@ -14,6 +14,10 @@ create table app_role (
     `name` varchar(50) not null unique
 );
 
+insert into app_role (`name`) values
+    ('USER'),
+    ('ADMIN');
+
 create table app_user_role (
     app_user_id int not null,
     app_role_id int not null,
@@ -58,4 +62,6 @@ create table collection_item (
 			foreign key (item_id)
             references item(item_id)
 );
+
+
 
