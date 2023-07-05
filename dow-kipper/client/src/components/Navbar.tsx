@@ -10,9 +10,9 @@ import {
 const Navbar: React.FC = () => {
   return (
     <div>
-      <nav className="bg-gray-400 flex items-center justify-center">
+      <nav className="bg-gray-400 flex items-center">
         <Link to="/">
-          <img className="w-16 h-16 mr-6" src={logo} alt="logo" />
+          <img className="w-16 h-16 mr-80" src={logo} alt="logo" />
         </Link>
         <ul className="flex items-center justify-center h-16">
           <li className="mr-6">Shop By Category</li>
@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
             <Link to="/user">User</Link>
           </li>
           <li className="mr-6">
-            <Link to="/setting">Settings</Link>
+            <Link to="/settings">Settings</Link>
           </li>
           <li className="mr-6">
             <Link to="/signup">Sign-Up</Link>
@@ -51,13 +51,9 @@ const Navbar: React.FC = () => {
             <Link to="/login">Login</Link>
           </li>
         </ul>
-        <div className="flex space-x-4">
-          <a href="/shopping" className="text-black">
-            <ShoppingCartIcon className="h-6 w-6" />
-          </a>
-          <a href="/alerts" className="text-black">
-            <BellIcon className="h-6 w-6" />
-          </a>
+        <div className="flex space-x-4 ml-4">
+          <ShoppingCartIcon className="h-6 w-6 text-black" />
+          <BellIcon className="h-6 w-6 text-black" />
         </div>
       </nav>
     </div>
