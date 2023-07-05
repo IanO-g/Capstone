@@ -6,9 +6,7 @@ import Footer from "./Footer";
 const Home: React.FC = () => {
   return (
     <div>
-      <Navbar />
       <Hero />
-      <Footer />
     </div>
   );
 };

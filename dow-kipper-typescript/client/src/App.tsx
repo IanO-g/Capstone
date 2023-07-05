@@ -15,7 +15,7 @@ import { Route, Routes } from "react-router-dom";
 const App: React.FC = () => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<Collections />} />
@@ -25,7 +25,7 @@ const App: React.FC = () => {
         <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

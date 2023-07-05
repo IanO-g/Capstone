@@ -32,7 +32,6 @@ const Settings: React.FC = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="account-main flex ml-4 py-6">
         <div className="side-bar">
           <div className="settings-container">

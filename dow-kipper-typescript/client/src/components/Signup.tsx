@@ -35,7 +35,6 @@ const Signup: React.FC = () => {
 
   return (
     <>
-      <Navbar />
       <div className="w-full h-screen">
         <img
           className="hidden sm:block absolute w-full h-64 object-cover"

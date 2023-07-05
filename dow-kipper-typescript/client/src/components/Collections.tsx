@@ -6,7 +6,6 @@ import Footer from "./Footer";
 const Collections: React.FC = () => {
   return (
     <div>
-      <Navbar />
       <div className="main-collections">
         <h1 className="ml-3 mt-12 text-4xl font-bold">View Your Collections</h1>
         <div className="collections-container grid grid-cols-3 gap-4 mt-4">
@@ -59,7 +58,6 @@ const Collections: React.FC = () => {
             </p>
           </div>
         </div>
-        <Footer />
       </div>
     </div>
   );
