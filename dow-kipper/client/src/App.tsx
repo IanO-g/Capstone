@@ -11,13 +11,13 @@ import Settings from "./components/Settings";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import { Route, Routes } from "react-router-dom";
+import { AppStateProvider } from "./context/UseState";
 // import Linechart from "./components/Linechart";
 
 const App: React.FC = () => {
   return (
-    <>
+    <AppStateProvider>
       <Navbar />
-      {/* <Linechart /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<Collections />} />
@@ -28,7 +28,7 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
-    </>
+  </AppStateProvider>
   );
 };
 

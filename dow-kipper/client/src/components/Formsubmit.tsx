@@ -13,7 +13,7 @@ const Formsubmit: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    
     try {
       const response = await fetch(API_DATA, {
         method: "POST",

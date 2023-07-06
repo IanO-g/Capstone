@@ -31,6 +31,7 @@ export interface ItemInterface {
 }
 
 export interface CollectionItemInterface {
+    id:number;
     collectionId: number;
     itemId: number;
     priceListed: number;
@@ -56,6 +57,7 @@ export class Item implements ItemInterface{
 
 export class CollectionItem implements CollectionItemInterface{
     constructor(
+        public id: number = 0,
         public collectionId: number,
         public itemId: number,
         public priceListed: number,
