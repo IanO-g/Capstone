@@ -1,8 +1,88 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import {
+  addItem,
+  deleteItemById,
+  getItem,
+  getItemsByCollectionId,
+  updateItem,
+} from "../services/CollectionsApi";
+import { Item } from "../models/models";
 
 const Inventory: React.FC = () => {
+  const [inventoryItems, setInventoryItems] = useState<Item[]>([]);
+  const [editedItem, setEditedItem] = useState<Item | null>(null);
+
+  const handleAddItem = async () => {
+    const newItem: Item = {
+      id: 0,
+      name: "New Item",
+      value: 100000,
+      grade: 9
+    };
+
+    try {
+      // Call the addItem function from the CollectionsApi
+      const createdItem = await addItem(newItem);
+      console.log("Created Item:", createdItem);
+      // Update the inventoryItems state with the new item
+      setInventoryItems([...inventoryItems, createdItem]);
+    } catch (error) {
+      console.error("Failed to create item:", error);
+    }
+  };
+
+  const handleEditItem = async (itemId: number) => {
+    try {
+      // Call the getItem function from the CollectionsApi
+      const item = await getItem(itemId);
+      setEditedItem(item);
+    } catch (error) {
+      console.error("Failed to fetch item:", error);
+    }
+  };
+
+  const handleDeleteItem = async (itemId: number) => {
+    try {
+      await deleteItemById(itemId);
+      console.log("Item deleted successfully");
+      setInventoryItems(inventoryItems.filter((item) => item.id !== itemId));
+    } catch (error) {
+      console.error("Failed to delete item:", error);
+    }
+  };
+
+  const handleUpdateItem = async (updatedItem: Item) => {
+    try {
+      await updateItem(updatedItem);
+      console.log("Item updated successfully");
+      setInventoryItems(
+        inventoryItems.map((item) =>
+          item.id === updatedItem.id ? updatedItem : item
+        )
+      );
+      setEditedItem(null);
+    } catch (error) {
+      console.error("Failed to update item:", error);
+    }
+  };
+
+  // useEffect(() => {
+  //   const fetchInventoryItems = async () => {
+  //     try {
+  //       // Call the getItemsByCollectionId function from the CollectionsApi
+  //       const items = await getItemsByCollectionId(collectionId);
+  //       setInventoryItems(items);
+  //     } catch (error) {
+  //       console.error("Failed to fetch inventory items:", error);
+  //     }
+  //   };
+
+  //   fetchInventoryItems();
+  // }, []);
+
+
   return (
     <div>
       <div className="main-collections">
@@ -75,6 +155,40 @@ const Inventory: React.FC = () => {
               iusto odio? Quia, ratione
             </p>
           </div>
+          {inventoryItems.map((item) => (
+            <div
+              key={item.id}
+              className="card p-4 flex flex-col items-center"
+              data-aos="flip-right"
+              data-aos-delay="400"
+            >
+              <h2 className="mb-2 text-lg font-bold text-red-500 tracking-wide capitalize">
+                {item.name}
+              </h2>
+              <img className="object-cover h-80 w-full" src="" alt="" />
+              <p>{item.name}</p>
+              <p className="font-bold">Grade {item.grade}: </p>
+              <p className="font-bold">${item.value}</p>
+              <button
+                onClick={() => handleEditItem(item.id)}
+                className="px-4 py-2 mt-2 bg-blue-500 text-white rounded-md"
+              >
+                Edit Item
+              </button>
+              <button
+                onClick={() => handleDeleteItem(item.id)}
+                className="px-4 py-2 mt-2 bg-red-500 text-white rounded-md"
+              >
+                Delete Item
+              </button>
+            </div>
+          ))}
+          <button
+            onClick={handleAddItem}
+            className="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded-md"
+          >
+            Add Item
+          </button>
         </div>
       </div>
     </div>

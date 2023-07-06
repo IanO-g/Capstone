@@ -14,8 +14,8 @@ POST {{urlSecurity}}/create-account
 Content-Type: application/json
 
 {
-    "username": "xi@test.com",
-    "password": "@yaaaahooooooWeBoysz11"
+    "username": "xitest@test.com",
+    "password": "@Password123"
 }
 
 ###

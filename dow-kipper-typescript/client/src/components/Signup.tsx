@@ -14,7 +14,13 @@ const Signup: React.FC = () => {
 
 
     try {
-      const response = await axios.post("/api/signup", { email, password });
+      const response = await axios.post(
+        "http://localhost:8080/security/create-account",
+        {
+          email,
+          password,
+        }
+      );
       console.log("Signup was successful:", response.data);
       // Reset the form
       setEmail("");

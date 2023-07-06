@@ -89,12 +89,6 @@ const Collections: React.FC = () => {
               </button>
             </div>
           ))}
-          <button
-            onClick={handleCreateCollection}
-            className="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded-md"
-          >
-            Add Collection
-          </button>
           <div className="card p-4 flex flex-col items-center">
             <h2 className="mb-4 text-lg font-bold text-indigo-700">
               Yugioh Collection
@@ -151,6 +145,12 @@ const Collections: React.FC = () => {
               iusto odio? Quia, ratione
             </p>
           </div>
+          <button
+            onClick={handleCreateCollection}
+            className="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded-md"
+          >
+            Add Collection
+          </button>
         </div>
       </div>
     </div>
