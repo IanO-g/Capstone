@@ -3,49 +3,57 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import axios from "axios";
+import {
+  addCollection,
+  deleteCollectionById,
+  getCollectionByCollectionId,
+  updateCollection,
+} from "../services/CollectionsApi";
+import { CollectionInterface } from "../models/models";
 
 AOS.init();
 
-interface Collection {
-  collection_id: number;
-  name: string;
-}
-
-
 const Collections: React.FC = () => {
-  const [collection, setCollection] = useState<Collection[]>([]);
+  const [collections, setCollections] = useState<CollectionInterface[]>([]);
+  const [editedCollection, setEditedCollection] =
+    useState<CollectionInterface | null>(null);
 
 
-  const handleAddCollection = async () => {
+  const handleCreateCollection = async () => {
+    const newCollection: CollectionInterface = {
+      id: 0,
+      name: "New Collection",
+      value: null,
+    };
+
     try {
-      const response = await axios.post("http://localhost:3000/collections", {
-        name: "New Collection",
-      });
-
-      const newCollection = response.data;
-      setCollection([...collection, newCollection]);
+      const createdCollection = await addCollection(newCollection);
+      console.log("Created Collection:", createdCollection);
     } catch (error) {
-      console.error("Failed to add a collection:", error);
+      console.error("Failed to create collection:", error);
     }
   };
 
-    const handleEditCollection = (collection_id: number) => {
-      console.log("Editing collection with ID:", collection_id);
-    };
+  const handleEditCollection = async (collectionId: number) => {
+    try {
+      const collection = await getCollectionByCollectionId(collectionId);
+      setEditedCollection(collection);
+    } catch (error) {
+      console.error("Failed to fetch collection:", error);
+    }
+  };
 
-    const handleDeleteCollection = async (collectionId: number) => {
-      try {
-        await axios.delete(`http://localhost:3000/collections/${collectionId}`);
-        setCollection(
-          collection.filter(
-            (collection) => collection.collection_id !== collectionId
-          )
-        );
-      } catch (error) {
-        console.error("Failed to delete the collection:", error);
-      }
-    };
+
+  const handleDeleteCollection = async (collectionId: number) => {
+    try {
+      await deleteCollectionById(collectionId);
+      console.log("Collection deleted successfully");
+    } catch (error) {
+      console.error("Failed to delete collection:", error);
+    }
+  };
+
+
 
   return (
     <div>
@@ -56,6 +64,37 @@ const Collections: React.FC = () => {
           data-aos="fade-right"
           data-aos-delay="400"
         >
+          {collections.map((collection) => (
+            <div
+              key={collection.id}
+              className="card p-4 flex flex-col items-center"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <h2 className="mb-4 text-lg font-bold text-indigo-700">
+                {collection.name}
+              </h2>
+              ```tsx
+              <button
+                onClick={() => handleEditCollection(collection.id)}
+                className="px-4 py-2 mt-2 bg-blue-500 text-white rounded-md"
+              >
+                Edit Collection
+              </button>
+              <button
+                onClick={() => handleDeleteCollection(collection.id)}
+                className="px-4 py-2 mt-2 bg-red-500 text-white rounded-md"
+              >
+                Delete Collection
+              </button>
+            </div>
+          ))}
+          <button
+            onClick={handleCreateCollection}
+            className="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded-md"
+          >
+            Add Collection
+          </button>
           <div className="card p-4 flex flex-col items-center">
             <h2 className="mb-4 text-lg font-bold text-indigo-700">
               Yugioh Collection
@@ -113,28 +152,6 @@ const Collections: React.FC = () => {
             </p>
           </div>
         </div>
-
-          Add Collection
-          <div className="button-container ga">
-            <button
-              onClick={handleAddCollection}
-              className="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded-md"
-            >
-              Add Collection
-            </button>
-            <button
-              onClick={() => handleEditCollection(collection.collection_id)}
-              className="px-4 py-2 mt-2 bg-blue-500 text-white rounded-md"
-            >
-              Edit Collection
-            </button>
-            <button
-              onClick={() => handleDeleteCollection(collection.collection_id)}
-              className="px-4 py-2 mt-2 bg-red-500 text-white rounded-md"
-            >
-              Delete Collection
-            </button>
-          </div>
       </div>
     </div>
   );
