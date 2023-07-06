@@ -14,6 +14,10 @@ create table app_role (
     `name` varchar(50) not null unique
 );
 
+insert into app_role (`name`) values
+    ('USER'),
+    ('ADMIN');
+
 create table app_user_role (
     app_user_id int not null,
     app_role_id int not null,
@@ -26,45 +30,37 @@ create table app_user_role (
         foreign key (app_role_id)
         references app_role(app_role_id)
 );
-
-insert into app_role (`name`) values
-    ('USER'),
-    ('ADMIN');
-
--- passwords are set to "P@ssw0rd!"
-insert into app_user (username, password_hash, enabled)
-    values
-    ('john@smith.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1),
-    ('sally@jones.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1);
-
-insert into app_user_role
-    values
-    (1, 2),
-    (2, 1);
     
-create table item_type (
-	item_type_id int not null,
-    type_name varchar(50) not null
-);
-
-create table collectible (
-	collectible_id int primary key auto_increment,
-    `name` varchar(50) not null,
-    type_name varchar(50) not null,
-    constraint fk_type_name
-		foreign key(type_name)
-        references item_type(type_name)
-);
-
 create table collection (
     collection_id int primary key auto_increment,
+    `name` varchar(50) not null,
     app_user_id int not null,
-    collectible_id int not null,
-    price DECIMAL not null,
+    `value` DECIMAL(19,4) not null,
     constraint fk_app_user_id
         foreign key(app_user_id)
-        references app_user(app_user_id),
-	constraint fk_collectibe_id
-		foreign key(collectible_id)
-        references collectible(collectible_id)
+        references app_user(app_user_id)
 );
+
+create table item (
+	item_id int primary key auto_increment,
+    `name` varchar(50) not null,
+    `value` DECIMAL(19,4) not null,
+    grade ENUM('UNGRADED', 'SEVEN', 'EIGHT', 'NINE', 'NINEFIVE', 'TEN') not null
+);
+
+create table collection_item (
+	collection_item_id int primary key auto_increment,
+	collection_id int not null,
+    item_id int not null,
+    is_sold boolean not null,
+    listed_price DECIMAL(19,4) not null,
+	constraint fk_collection_id
+		foreign key (collection_id)
+		references collection(collection_id),
+	constraint fk_item_id
+		foreign key (item_id)
+		references item(item_id)
+);
+
+
+
