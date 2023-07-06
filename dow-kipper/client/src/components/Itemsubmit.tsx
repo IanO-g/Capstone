@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import { Item } from "../models/models";
 
 const API_DATA =
   "https://www.sportscardspro.com/api/product?t=0ed6fa9c6ab7bb46cb3304b030b13255919e8c59&id=2530687%27";
 
-interface Item {
-  id: number;
-  name: string;
-  value: number;
-  grade: string;
-}
 
 const Itemsubmit: React.FC = () => {
   const [input, setInput] = useState("");
@@ -26,9 +21,9 @@ const Itemsubmit: React.FC = () => {
         },
         body: JSON.stringify({ input: input }),
       });
-
+      
       console.log("Response:", response);
-
+      
       if (response.ok) {
         const data = await response.json();
         console.log("Data:", data);

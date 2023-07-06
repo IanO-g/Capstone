@@ -27,7 +27,7 @@ export interface ItemInterface {
     id: number;
     name: string;
     value: number | null;
-    grade: Grade;
+    grade: Grade | null;
 }
 
 export interface CollectionItemInterface {
@@ -50,8 +50,8 @@ export class Item implements ItemInterface{
     constructor(
         public id: number = 0,
         public name: string,
-        public value: number | null = null,
-        public grade: Grade = Grade.UNGRADED
+        public value: number | null = 0.00,
+        public grade: Grade | null = Grade.UNGRADED
     ){}
 }
 

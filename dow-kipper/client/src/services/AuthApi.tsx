@@ -1,5 +1,25 @@
 const url = 'http://localhost:8080/security';
 
+export async function createUser(credentials: any){
+    const init = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      };
+
+      const response = await fetch(`${url}/create-account`, init);
+
+  if (response.status === 200) {
+    const data = await response.json();
+    return data.appUserId;
+  } else {
+    return Promise.reject('Error creating account');
+  }
+}
+
 export async function authenticate(credentials: any) {
   const init = {
     method: 'POST',

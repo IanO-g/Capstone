@@ -38,9 +38,9 @@ interface ApiResponse {
   'retail-loose-sell': number | null; // recommended sell
 }
 
-// interface ArrayApiResponse {
-//     products: ApiResponse[];
-// }
+interface ArrayApiResponse {
+    products: ApiResponse[];
+}
 
 export function mapApiResponseToItem(apiResponse: ApiResponse, grade:Grade): Item {
     const {
@@ -75,7 +75,7 @@ export function mapApiResponseToItem(apiResponse: ApiResponse, grade:Grade): Ite
             value = ungradedPrice;
             break;
         default:
-            throw new Error('Invalid grade');
+            value = recommendedPrice;
     }
     return {
         id: 0,
@@ -85,11 +85,11 @@ export function mapApiResponseToItem(apiResponse: ApiResponse, grade:Grade): Ite
     };
 }
 
-// export function mapArrayApiResponse(apiResponse: ArrayApiResponse, grade: Grade): Item[] {
-//     const { products } = apiResponse;
+export function mapArrayApiResponse(arrayResponse: ArrayApiResponse, grade: Grade | null): Item[] {
+    const { products } = arrayResponse;
 
-//     return products.map((item: ArrayApiResponse) => {
-//         return mapApiResponseToItem(item);
-//     })
-// }
+    return products.map((item: ApiResponse) => {
+        return mapApiResponseToItem(item, grade ?? Grade.UNGRADED);
+    })
+}
 
