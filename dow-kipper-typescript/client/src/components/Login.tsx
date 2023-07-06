@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import coverLogo from "../assets/cover.png"
 import Navbar from "./Navbar";
 import axios from 'axios';
@@ -9,6 +10,9 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const { setAccessToken } =
     useAppState();
+  const navigate = useNavigate();
+  const [showNotification, setShowNotification] = useState(false);
+
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -33,12 +37,20 @@ const Login: React.FC = () => {
       // Reset the form
       setEmail("");
       setPassword("");
+      setShowNotification(true);
     } catch (error) {
-      console.error("Signup failed:", error);
+      console.log("Signup failed:", error);
     }
   };
 
-  // Create a POST Request for LOGIN ENDPOINT
+  useEffect(() => {
+    if (showNotification) {
+      setTimeout(() => {
+        setShowNotification(false);
+        navigate("/"); // Redirect to the home page after 2 seconds
+      }, 2000);
+    }
+  }, [showNotification, navigate]);
 
   return (
     <>
@@ -54,6 +66,10 @@ const Login: React.FC = () => {
           <div className="max-w-[450px] h-[400px] mx-auto bg-slate-200 text-black rounded">
             <div className="max-w-[320px] mx-auto py-12">
               <h1 className="text 3xl font-bold">Login</h1>
+              {/* Renders a successful login */}
+              {showNotification && (
+                <div className="notification-message">Login was successful</div>
+              )}
               <form
                 onSubmit={handleSubmit}
                 className="w-full flex flex-col py-4"

@@ -6,6 +6,9 @@ import Navbar from "./Navbar";
 const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,14 +28,15 @@ const Signup: React.FC = () => {
       // Reset the form
       setEmail("");
       setPassword("");
+      setSignupSuccess(true);
+      setShowNotification(true);
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
     } catch (error) {
-      console.error("Signup failed:", error);
+      console.log("Signup was unsuccessful:", error);
     }
   };
-
-  // After the user signs up, as a response from create-account, the user needs to receive a JWT access token and refresh token
-  // THIS NEEDS TO COME FROM THE BACKEND
-  // What kind of authentication we need
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -56,6 +60,12 @@ const Signup: React.FC = () => {
           <div className="max-w-[450px] h-[400px] mx-auto bg-slate-200 text-black rounded">
             <div className="max-w-[320px] mx-auto py-12">
               <h1 className="text 3xl font-bold">Sign Up</h1>
+              {/* Renders a notification */}
+              {showNotification && (
+                <div className="notification-message bg-red-100 text-gray-800 p-2 rounded mt-4">
+                  Signup was successful
+                </div>
+              )}
               <form
                 onSubmit={handleSubmit}
                 className="w-full flex flex-col py-4"
