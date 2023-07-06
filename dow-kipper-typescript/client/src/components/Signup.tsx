@@ -15,9 +15,9 @@ const Signup: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/security/create-account",
+        "/security/create-account",
         {
-          email,
+          username: email,
           password,
         }
       );
@@ -28,8 +28,11 @@ const Signup: React.FC = () => {
     } catch (error) {
       console.error("Signup failed:", error);
     }
-
   };
+
+  // After the user signs up, as a response from create-account, the user needs to receive a JWT access token and refresh token
+  // THIS NEEDS TO COME FROM THE BACKEND
+  // What kind of authentication we need
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);

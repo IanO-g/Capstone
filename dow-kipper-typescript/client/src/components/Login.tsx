@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import coverLogo from "../assets/cover.png"
 import Navbar from "./Navbar";
+import axios from 'axios';
+import { useAppState } from "../context/useappstate";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setAccessToken, } =
+    useAppState();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -14,14 +18,27 @@ const Login: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
-    // Reset the form
-    setEmail("");
-    setPassword("");
+
+    try {
+      const response = await axios.post("/security/authenticate", {
+        username: email,
+        password,
+      });
+      console.log("Login was successful:", response.data);
+      setAccessToken(response.data.jwt_token);
+      // Reset the form
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.error("Signup failed:", error);
+    }
   };
+
+  // Create a POST Request for LOGIN ENDPOINT
 
   return (
     <>
