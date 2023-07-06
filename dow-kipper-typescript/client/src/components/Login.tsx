@@ -7,7 +7,7 @@ import { useAppState } from "../context/useappstate";
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setAccessToken, } =
+  const { setAccessToken } =
     useAppState();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +49,7 @@ const Login: React.FC = () => {
           alt="/"
         />
         {/* Form Overlay */}
-        <div className="fixed w-full px-4 py-72 z-10">
+        <div className="sticky w-full px-4 py-72 z-10">
           {/* Form */}
           <div className="max-w-[450px] h-[400px] mx-auto bg-slate-200 text-black rounded">
             <div className="max-w-[320px] mx-auto py-12">
