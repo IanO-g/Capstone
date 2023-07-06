@@ -17,6 +17,20 @@ export interface Init {
     body?: string;
 }
 
+export interface AppUserInterface {
+    appUserId: number;
+    username: string;
+    roles: string[];
+}
+
+export class AppUser implements AppUserInterface{
+    constructor (
+        public appUserId: number = 0,
+        public username: string,
+        public roles: string[]
+    ){}
+}
+
 export interface CollectionInterface {
     id: number;
     name: string;
