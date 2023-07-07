@@ -43,6 +43,7 @@ const Login: React.FC = () => {
     }
   };
 
+  // Redirect
   useEffect(() => {
     if (showNotification) {
       setTimeout(() => {

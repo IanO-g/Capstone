@@ -1,4 +1,26 @@
+import { AppUser } from "../models/models";
+
 const url = "http://localhost:8080/security";
+
+export async function createUser(credentials: any) {
+  const init = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(credentials),
+  };
+
+  const response = await fetch(`${url}/create-account`, init);
+
+  if (response.status === 200) {
+    const data = await response.json();
+    return data.appUserId;
+  } else {
+    return Promise.reject("Error creating account");
+  }
+}
 
 export async function authenticate(credentials: any) {
   const init = {
@@ -46,13 +68,13 @@ export function signOut() {
   localStorage.removeItem("jwt_token");
 }
 
-const makeUser = (authResponse: { jwt_token: any }) => {
+const makeUser = (authResponse: { jwt_token: string }) => {
   const jwtToken = authResponse.jwt_token;
   localStorage.setItem("jwt_token", jwtToken);
   return makeUserFromJwt(jwtToken);
 };
 
-const makeUserFromJwt = (jwtToken: string) => {
+const makeUserFromJwt = (jwtToken: string): AppUser | null => {
   const tokenParts = jwtToken.split(".");
   if (tokenParts.length > 1) {
     const userData = tokenParts[1];
@@ -63,4 +85,5 @@ const makeUserFromJwt = (jwtToken: string) => {
       roles: decodedUserData.authorities.split(","),
     };
   }
+  return null;
 };

@@ -1,59 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import {
-  addCollection,
-  deleteCollectionById,
-  getCollectionByCollectionId,
-  updateCollection,
-} from "../services/CollectionsApi";
-import { CollectionInterface } from "../models/models";
+import { useNavigate } from "react-router-dom";
 
 AOS.init();
 
 const Collections: React.FC = () => {
-  const [collections, setCollections] = useState<CollectionInterface[]>([]);
-  const [editedCollection, setEditedCollection] =
-    useState<CollectionInterface | null>(null);
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const navigate = useNavigate();
 
-
-  const handleCreateCollection = async () => {
-    const newCollection: CollectionInterface = {
-      id: 0,
-      name: "New Collection",
-      value: null,
-    };
-
-    try {
-      const createdCollection = await addCollection(newCollection);
-      console.log("Created Collection:", createdCollection);
-    } catch (error) {
-      console.error("Failed to create collection:", error);
-    }
+  const handleCreateCollection = () => {  
+    setShowCreateForm(false);
   };
-
-  const handleEditCollection = async (collectionId: number) => {
-    try {
-      const collection = await getCollectionByCollectionId(collectionId);
-      setEditedCollection(collection);
-    } catch (error) {
-      console.error("Failed to fetch collection:", error);
-    }
-  };
-
-
-  const handleDeleteCollection = async (collectionId: number) => {
-    try {
-      await deleteCollectionById(collectionId);
-      console.log("Collection deleted successfully");
-    } catch (error) {
-      console.error("Failed to delete collection:", error);
-    }
-  };
-
-
 
   return (
     <div>
@@ -64,31 +24,6 @@ const Collections: React.FC = () => {
           data-aos="fade-right"
           data-aos-delay="400"
         >
-          {collections.map((collection) => (
-            <div
-              key={collection.id}
-              className="card p-4 flex flex-col items-center"
-              data-aos="fade-up"
-              data-aos-delay="600"
-            >
-              <h2 className="mb-4 text-lg font-bold text-indigo-700">
-                {collection.name}
-              </h2>
-              ```tsx
-              <button
-                onClick={() => handleEditCollection(collection.id)}
-                className="px-4 py-2 mt-2 bg-blue-500 text-white rounded-md"
-              >
-                Edit Collection
-              </button>
-              <button
-                onClick={() => handleDeleteCollection(collection.id)}
-                className="px-4 py-2 mt-2 bg-red-500 text-white rounded-md"
-              >
-                Delete Collection
-              </button>
-            </div>
-          ))}
           <div className="card p-4 flex flex-col items-center">
             <h2 className="mb-4 text-lg font-bold text-indigo-700">
               Yugioh Collection
@@ -146,7 +81,7 @@ const Collections: React.FC = () => {
             </p>
           </div>
           <button
-            onClick={handleCreateCollection}
+            onClick={() => setShowCreateForm(true)}
             className="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded-md"
           >
             Add Collection

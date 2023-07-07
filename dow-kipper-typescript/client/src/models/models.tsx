@@ -1,10 +1,10 @@
 export enum Grade {
-  UNGRADED = 0,
-  SEVEN = 7,
-  EIGHT = 8,
-  NINE = 9,
-  NINEFIVE = 9.5,
-  TEN = 10,
+  UNGRADED = "UNGRADED",
+  SEVEN = "SEVEN",
+  EIGHT = "EIGHT",
+  NINE = "NINE",
+  NINEFIVE = "NINEFIVE",
+  TEN = "TEN",
 }
 
 export interface Init {
@@ -17,6 +17,20 @@ export interface Init {
   body?: string;
 }
 
+export interface AppUserInterface {
+  appUserId: number;
+  username: string;
+  roles: string[];
+}
+
+export class AppUser implements AppUserInterface {
+  constructor(
+    public appUserId: number = 0,
+    public username: string,
+    public roles: string[]
+  ) {}
+}
+
 export interface CollectionInterface {
   id: number;
   name: string;
@@ -27,10 +41,11 @@ export interface ItemInterface {
   id: number;
   name: string;
   value: number | null;
-  grade: Grade;
+  grade: Grade | null;
 }
 
 export interface CollectionItemInterface {
+  id: number;
   collectionId: number;
   itemId: number;
   priceListed: number;
@@ -49,13 +64,14 @@ export class Item implements ItemInterface {
   constructor(
     public id: number = 0,
     public name: string,
-    public value: number | null = null,
-    public grade: Grade = Grade.UNGRADED
+    public value: number | null = 0.0,
+    public grade: Grade | null = Grade.UNGRADED
   ) {}
 }
 
 export class CollectionItem implements CollectionItemInterface {
   constructor(
+    public id: number = 0,
     public collectionId: number,
     public itemId: number,
     public priceListed: number,

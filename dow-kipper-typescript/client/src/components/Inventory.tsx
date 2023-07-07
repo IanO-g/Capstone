@@ -19,7 +19,7 @@ const Inventory: React.FC = () => {
       id: 0,
       name: "New Item",
       value: 100000,
-      grade: 9
+      grade: null
     };
 
     try {
@@ -67,21 +67,6 @@ const Inventory: React.FC = () => {
       console.error("Failed to update item:", error);
     }
   };
-
-  // useEffect(() => {
-  //   const fetchInventoryItems = async () => {
-  //     try {
-  //       // Call the getItemsByCollectionId function from the CollectionsApi
-  //       const items = await getItemsByCollectionId(collectionId);
-  //       setInventoryItems(items);
-  //     } catch (error) {
-  //       console.error("Failed to fetch inventory items:", error);
-  //     }
-  //   };
-
-  //   fetchInventoryItems();
-  // }, []);
-
 
   return (
     <div>
@@ -155,34 +140,6 @@ const Inventory: React.FC = () => {
               iusto odio? Quia, ratione
             </p>
           </div>
-          {inventoryItems.map((item) => (
-            <div
-              key={item.id}
-              className="card p-4 flex flex-col items-center"
-              data-aos="flip-right"
-              data-aos-delay="400"
-            >
-              <h2 className="mb-2 text-lg font-bold text-red-500 tracking-wide capitalize">
-                {item.name}
-              </h2>
-              <img className="object-cover h-80 w-full" src="" alt="" />
-              <p>{item.name}</p>
-              <p className="font-bold">Grade {item.grade}: </p>
-              <p className="font-bold">${item.value}</p>
-              <button
-                onClick={() => handleEditItem(item.id)}
-                className="px-4 py-2 mt-2 bg-blue-500 text-white rounded-md"
-              >
-                Edit Item
-              </button>
-              <button
-                onClick={() => handleDeleteItem(item.id)}
-                className="px-4 py-2 mt-2 bg-red-500 text-white rounded-md"
-              >
-                Delete Item
-              </button>
-            </div>
-          ))}
           <button
             onClick={handleAddItem}
             className="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded-md"
