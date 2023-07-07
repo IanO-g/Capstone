@@ -12,26 +12,29 @@ import { Item } from "../models/models";
 
 const Inventory: React.FC = () => {
   const [inventoryItems, setInventoryItems] = useState<Item[]>([]);
+  const [newItem, setNewItem] = useState<Item | null>(null);
   const [editedItem, setEditedItem] = useState<Item | null>(null);
 
-  const handleAddItem = async () => {
-    const newItem: Item = {
-      id: 0,
-      name: "New Item",
-      value: 100000,
-      grade: null
-    };
-
-    try {
-      // Call the addItem function from the CollectionsApi
-      const createdItem = await addItem(newItem);
-      console.log("Created Item:", createdItem);
-      // Update the inventoryItems state with the new item
-      setInventoryItems([...inventoryItems, createdItem]);
-    } catch (error) {
-      console.error("Failed to create item:", error);
-    }
+const handleAddItem = async () => {
+  const newItem: Item = {
+    id: 0,
+    name: "New Item",
+    value: 100000,
+    grade: null,
   };
+
+  try {
+    // Call the addItem function from the CollectionsApi
+    const createdItem = await addItem(newItem);
+    console.log("Created Item:", createdItem);
+    // Set the new item to be rendered
+    setNewItem(createdItem);
+    // Update the inventoryItems state with the new item
+    setInventoryItems([...inventoryItems, createdItem]);
+  } catch (error) {
+    console.error("Failed to create item:", error);
+  }
+};
 
   const handleEditItem = async (itemId: number) => {
     try {
@@ -146,6 +149,24 @@ const Inventory: React.FC = () => {
           >
             Add Item
           </button>
+          {newItem && (
+            <div
+              className="card p-4 flex flex-col items-center"
+              data-aos="flip-right"
+              data-aos-delay="400"
+            >
+              <h2 className="mb-2 text-lg font-bold text-green-500 tracking-wide capitalize">
+                {newItem.name}
+              </h2>
+              <img
+                className="object-cover h-80 w-full"
+                src=""
+                alt=""
+              />
+              <p className="font-bold">Grade: {newItem.grade}</p>
+              <p className="font-bold">${newItem.value}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

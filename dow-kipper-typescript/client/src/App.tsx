@@ -17,7 +17,10 @@ import { AppUser } from "./models/models";
 import { refreshToken, signOut } from "./services/AuthApi";
 
 import "./index.css";
-
+import MEmptyInventory from "./components/MEmptyInventory";
+import MItemForm from "./components/MItemForm";
+import MCardsList from "./components/MCardList";
+import MInventory from "./components/MInventory";
 
 // const EMPTY_USER: AppUser = {
 //   appUserId: 0,
@@ -76,15 +79,15 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<Collections />} />
-        {/* <Route
-          path="/api/collection"
-          element={auth.isLoggedIn() ? <Collections /> : <Navigate to="/" />}
-        /> */}
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/user" element={<User />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/memptyinventory" element={<MEmptyInventory />} />
+        <Route path="/mitemform" element={<MItemForm />} />
+        <Route path="/mcardslist" element={<MCardsList />} />
+        <Route path="/minventory" element={<MInventory />} />
       </Routes>
       <Footer />
     </AppStateProvider>

@@ -48,7 +48,7 @@ const Login: React.FC = () => {
     if (showNotification) {
       setTimeout(() => {
         setShowNotification(false);
-        navigate("/"); // Redirect to the home page after 2 seconds
+        navigate("/MEmptyInventory"); // Redirect to Inventory page after 2 seconds
       }, 2000);
     }
   }, [showNotification, navigate]);
